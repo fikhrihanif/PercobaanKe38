@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Anda Sedang Offline</h1>
+        <p>Anda tidak terhubung ke internet.</p>
+        <a href="/aboutoffline.html" class="buttonoffline">Kembali ke About Us</a> 
+    </div>
+</body>
+<script>
+    // Pendaftaran Service Worker
+    if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+                console.log('Service Worker terdaftar dengan sukses:', registration);
+            })
+            .catch(error => {
+                console.error('Gagal mendaftarkan Service Worker:', error);
+            });
+    });
+}
+
+
+    // Kirim pesan ke Service Worker saat tombol ditekan
+    document.getElementById('aboutLink').addEventListener('click', function(event) {
+        event.preventDefault(); // Mencegah default link
+        window.location.href = '/aboutoffline.html'; // Arahkan ke aboutoffline.html
+    });
+</script>
+</html>

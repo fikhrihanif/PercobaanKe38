@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us Offline</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>About Us</h1>
+        <p>Ini adalah halaman tentang saya pak.</p>
+        <p>Perkenalkan pak</p>
+        <p>Nama saya Fikhri Hanif</p>
+        <p>Dari prodi Informatika Universitas Andalas</p>
+        <p>Berasal dari Bukittinggi</p>
+        <p>Website ini adalah contoh Progressive Web App (PWA) yang memberikan pengalaman pengguna yang lebih baik.</p>
+        <p>Kami bertujuan untuk menyediakan informasi yang berguna dengan aksesibilitas yang tinggi, termasuk kemampuan untuk diakses secara offline dan diinstal di perangkat Anda.</p>
+        
+        <a href="#" id="backLink" class="buttonoffline">Kembali ke Halaman Offline</a>
+    </div>
+
+    <script>
+        // Pendaftaran Service Worker
+        if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+                console.log('Service Worker terdaftar dengan sukses:', registration);
+            })
+            .catch(error => {
+                console.error('Gagal mendaftarkan Service Worker:', error);
+            });
+     });
+     }
+
+
+        // Pastikan elemen ada sebelum menambah event listener
+        const backLink = document.getElementById('backLink');
+        if (backLink) {
+            backLink.addEventListener('click', function(event) {
+                event.preventDefault(); // Mencegah default link
+                window.location.href = '/offline.html'; // Arahkan ke offline.html
+            });
+        } else {
+            console.error('Element with ID backLink not found');
+        }
+    </script>
+</body>
+</html>
